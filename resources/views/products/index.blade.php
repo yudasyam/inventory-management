@@ -25,6 +25,12 @@
                 </tr>
             </thead>
             <tbody>
+                @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+                @endif
+
                 @foreach ($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
@@ -35,12 +41,23 @@
                     <td>
                     <td>
                     <td>
+                    <td>
                         <a href="/products/{{ $product->id }}/edit" class="btn btn-primary btn-sm">Edit</a>
                         <form action="/products/{{ $product->id }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
                         </form>
+                        <form action="/products/{{ $product->id }}/checkout" method="POST" style="display:inline-block;">
+                            @csrf
+                            <div class="input-group">
+                                <input type="number" name="quantity" class="form-control" placeholder="Qty" min="1" max="{{ $product->quantity }}" required>
+                                <button type="submit" class="btn btn-warning btn-sm">Check Out</button>
+                            </div>
+                        </form>
+
+                    </td>
+
                     </td>
 
                     </td>

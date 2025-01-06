@@ -30,3 +30,4 @@ Route::put('/products/{id}', [ProductController::class, 'update']); // Menyimpan
 
 Route::delete('/products/{id}', [ProductController::class, 'destroy']); // Menghapus produk
 
+Route::post('/products/{id}/checkout', [ProductController::class, 'checkout']);

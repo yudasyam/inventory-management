@@ -86,4 +86,25 @@ class ProductController extends Controller
         // Redirect ke halaman produk dengan pesan sukses
         return redirect('/')->with('success', 'Product deleted successfully!');
     }
+    public function checkout(Request $request, $id)
+{
+    // Validasi input jumlah
+    $request->validate([
+        'quantity' => 'required|integer|min:1',
+    ]);
+
+    // Cari produk berdasarkan ID
+    $product = Product::findOrFail($id);
+
+    // Pastikan jumlah produk cukup untuk di-check out
+    if ($product->quantity >= $request->quantity) {
+        $product->quantity -= $request->quantity;
+        $product->save();
+
+        return redirect('/')->with('success', 'Product checked out successfully!');
+    }
+
+    return redirect('/')->with('error', 'Insufficient product quantity!');
+}
+
 }
