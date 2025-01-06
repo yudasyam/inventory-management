@@ -16,5 +16,6 @@ class ProductController extends Controller
 
     public function add()
     {
+        dd('kesini');
     }
 }
