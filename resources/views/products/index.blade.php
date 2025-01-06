@@ -34,8 +34,15 @@
                     <td>{{ $product->quantity }}</td>
                     <td>
                     <td>
+                    <td>
                         <a href="/products/{{ $product->id }}/edit" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                        <form action="/products/{{ $product->id }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                        </form>
+                    </td>
+
                     </td>
 
                     </td>

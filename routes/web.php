@@ -28,4 +28,5 @@ Route::post('/products', [ProductController::class, 'store']);
 Route::get('/products/{id}/edit', [ProductController::class, 'edit']); // Menampilkan form edit
 Route::put('/products/{id}', [ProductController::class, 'update']); // Menyimpan perubahan
 
+Route::delete('/products/{id}', [ProductController::class, 'destroy']); // Menghapus produk
 

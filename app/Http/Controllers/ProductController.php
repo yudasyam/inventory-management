@@ -41,7 +41,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-    //  dd($id);
+        //  dd($id);
         // Ambil data produk berdasarkan ID
         $product = Product::findOrFail($id);
 
@@ -74,5 +74,16 @@ class ProductController extends Controller
 
         // Redirect ke halaman produk dengan pesan sukses
         return redirect('/')->with('success', 'Product updated successfully!');
+    }
+    public function destroy($id)
+    {
+        // Cari produk berdasarkan ID
+        $product = Product::findOrFail($id);
+
+        // Hapus produk
+        $product->delete();
+
+        // Redirect ke halaman produk dengan pesan sukses
+        return redirect('/')->with('success', 'Product deleted successfully!');
     }
 }
