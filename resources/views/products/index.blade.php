@@ -9,6 +9,8 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Product List</h1>
+        <!-- Tambahkan tombol Add Product -->
+        <a href="/products/create" class="btn btn-success mb-3">Add Product</a>
         <table class="table table-striped">
             <thead>
                 <tr>

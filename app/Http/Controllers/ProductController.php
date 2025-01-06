@@ -14,8 +14,29 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
-    public function add()
+    public function create()
     {
-        dd('kesini');
+        return view('products.create');
     }
+    
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer',
+        ]);
+    
+        Product::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+        ]);
+
+    
+        return redirect('/')->with('success', 'Product added successfully!');
+    }
+    
 }
